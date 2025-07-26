@@ -5,6 +5,8 @@ import { AuthModule } from './auth/auth.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { RoomsModule } from './rooms/rooms.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
     imports: [
@@ -16,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
                 port: configService.get<number>('DATABASE_PORT', 3306),
                 username: configService.get<string>('DATABASE_USERNAME', 'root'),
                 password: configService.get<string>('DATABASE_PASSWORD', ''),
-                database: configService.get<string>('DATABASE_NAME', 'testbususer'),
+                database: configService.get<string>('DATABASE_NAME', 'testdbchat'),
                 entities: [],
                 autoLoadEntities: true,
                 synchronize: true,
@@ -38,6 +40,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         UsersModule,
         AuthModule,
         AuditLogModule,
+        ChatModule,
+        RoomsModule,
     ],
     controllers: [],
     providers: [],

@@ -1,5 +1,6 @@
 import { userRoles, userStatus } from "src/common/enume/enum";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Room } from "src/rooms/entites/room.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -23,6 +24,9 @@ export class User {
 
     @Column({ type: 'varchar', nullable: true })
     photoUrl: string | null;
+
+    @ManyToMany(() => Room, (room) => room.members)
+    rooms: Room[];
 
     @Column({type: 'float', default: 0})
     loginAttempts: number;
